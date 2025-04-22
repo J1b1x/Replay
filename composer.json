@@ -11,14 +11,6 @@
         }
     ],
     "require": {
-        "j1b1x/asyncmedoo": "dev-master",
-        "pocketmine/pocketmine-mp": "*",
-        "ext-yaml": "*",
-        "ext-pdo": "*",
-        "ext-zlib": "*",
-        "ext-curl": "*",
-        "ext-gd": "*",
-        "ext-igbinary": "*",
-        "ext-zip": "*"
+        "j1b1x/asyncmedoo": "dev-master"
     }
 }
