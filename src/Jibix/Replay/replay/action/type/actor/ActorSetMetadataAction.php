@@ -47,6 +47,7 @@ class ActorSetMetadataAction extends EntityAction{
     }
 
     public function handleReversed(Replay $replay): ?Action{
-        return self::create($this->entityId, $replay->getEntity($this->entityId)->getNetworkProperties()->getAll());
+        if (!$entity = $replay->getEntity($this->entityId)) return null; //don't ask me how tf this is even possible
+        return self::create($this->entityId, $entity->getNetworkProperties()->getAll());
     }
 }
