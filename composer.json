@@ -1,0 +1,24 @@
+{
+    "name": "jibix/replay",
+    "minimum-stability": "dev",
+    "autoload": {
+        "classmap": [ "src" ]
+    },
+    "authors": [
+        {
+            "name": "Jibix",
+            "homepage": "https://github.com/J1b1x"
+        }
+    ],
+    "require": {
+        "j1b1x/asyncmedoo": "dev-master",
+        "pocketmine/pocketmine-mp": "*",
+        "ext-yaml": "*",
+        "ext-pdo": "*",
+        "ext-zlib": "*",
+        "ext-curl": "*",
+        "ext-gd": "*",
+        "ext-igbinary": "*",
+        "ext-zip": "*"
+    }
+}
