@@ -14,7 +14,7 @@ Using a replay system like this can cause performance issues, especially if you 
 
 This is a Network based Replay API, means it's not supposed to be used as a recorder and replayer at once on the same server.
 
-However, if you have any issues, ideas or feature requests, just [create an issue]().
+However, if you have any issues, ideas or feature requests, just [create an issue](https://github.com/J1b1x/Replay/issues/new).
 ## API
 
 ### Recorder
@@ -135,7 +135,7 @@ $recorder->addEventLog(new BedBreakEvent($player, $team));
 ### Replayer
 
 #### Replaying
-To handle the replay watching use the [Replay events]() and the functions in the [Replay](https://github.com/J1b1x/Replay/blob/master/src/Jibix/Replay/replay/replayer/Replay.php) class.
+To handle the replay watching use the [Replay events](https://github.com/J1b1x/Replay?tab=readme-ov-file#replay-events) and the functions in the [Replay](https://github.com/J1b1x/Replay/blob/master/src/Jibix/Replay/replay/replayer/Replay.php) class.
 ```php
     public static function play(ReplaySettings $settings, Player $player, ReplayInformation $information): void;
 
