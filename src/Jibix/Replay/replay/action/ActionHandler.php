@@ -5,6 +5,7 @@ use Jibix\Replay\replay\action\type\actor\ActorDespawnAction;
 use Jibix\Replay\replay\action\type\actor\ActorEventAction;
 use Jibix\Replay\replay\action\type\actor\ActorSetMetadataAction;
 use Jibix\Replay\replay\action\type\entity\EntityArmorEquipAction;
+use Jibix\Replay\replay\action\type\entity\EntityChangeSkinAction;
 use Jibix\Replay\replay\action\type\entity\EntityEquipAction;
 use Jibix\Replay\replay\action\type\entity\EntityMoveAction;
 use Jibix\Replay\replay\action\type\entity\EntityPlayEmoteAction;
@@ -44,6 +45,7 @@ final class ActionHandler{
             new EntityEquipAction(),
             new EntityArmorEquipAction(),
             new EntityPlayEmoteAction(),
+            new EntityChangeSkinAction(),
 
             new PlayerAnimationAction(),
             new PlayerChatAction(),
