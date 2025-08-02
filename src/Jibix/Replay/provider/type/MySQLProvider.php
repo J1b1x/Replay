@@ -26,7 +26,8 @@ class MySQLProvider implements Provider{
     private const PLAYER_REPLAY_DATA_TABLE = "player_replay_data";
 
     public function __construct(){
-        $medoo = AsyncMedoo::getCredentials()->createConnection();
+        $credentials = AsyncMedoo::getCredentials();
+        $medoo = $credentials->createConnection();
         $medoo->create(self::REPLAY_TABLE, [
             "identifier" => ["VARCHAR(" . self::MAX_IDENTIFIER_LENGTH . ")", "NOT NULL", "UNIQUE", "PRIMARY KEY"],
             "information" => ["VARCHAR(500)", "NOT NULL"],
@@ -36,6 +37,7 @@ class MySQLProvider implements Provider{
             "xuid" => ["VARCHAR(255)", "NOT NULL", "UNIQUE", "PRIMARY KEY"],
             "identifiers" => ["LONGBLOB", "NOT NULL"],
         ]);
+
         $medoo->pdo = null;
     }
 
@@ -109,7 +111,7 @@ class MySQLProvider implements Provider{
                     $medoo->insert(self::PLAYER_REPLAY_DATA_TABLE, ["xuid" => $xuid, "identifiers" => json_encode([$identifier])]);
                 }
             }
-        }, fn () => $onComplete($information));
+        }, fn () => $onComplete($information, number_format(strlen($buffer) / (1024 * 1024), 2)));
     }
 
     public function deleteReplay(string $identifier, ?Closure $onComplete = null): void{

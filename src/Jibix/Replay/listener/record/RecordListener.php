@@ -11,6 +11,7 @@ use Jibix\Replay\replay\action\type\player\PlayerAnimationAction;
 use Jibix\Replay\replay\action\type\player\PlayerChatAction;
 use Jibix\Replay\replay\action\type\world\BlockEventAction;
 use Jibix\Replay\replay\action\type\world\LevelEventAction;
+use Jibix\Replay\replay\action\type\world\SetBlockAction;
 use Jibix\Replay\replay\action\type\world\SignChangeAction;
 use Jibix\Replay\replay\log\type\PlayerDeathEventLog;
 use Jibix\Replay\replay\recorder\Recorder;
@@ -21,6 +22,7 @@ use pocketmine\event\block\SignChangeEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityDeathEvent;
 use pocketmine\event\entity\EntityDespawnEvent;
+use pocketmine\event\entity\EntityExplodeEvent;
 use pocketmine\event\entity\EntitySpawnEvent;
 use pocketmine\event\entity\EntityTeleportEvent;
 use pocketmine\event\entity\ItemSpawnEvent;
@@ -232,7 +234,17 @@ class RecordListener implements Listener{
 
     /** @priority MONITOR */
     public function onSignChange(SignChangeEvent $event): void{
+        if ($event->getBlock()->getPosition()->getWorld() !== $this->recorder->getWorld()) return;
         $this->recorder->addAction(SignChangeAction::create($event->getSign()));
+    }
+
+    /** @priority MONITOR */
+    public function onExplode(EntityExplodeEvent $event): void{
+        if ($event->getPosition()->getWorld() !== $this->recorder->getWorld()) return;
+        foreach ($event->getBlockList() as $block) {
+            $pos = $block->getPosition();
+            $this->recorder->addAction(SetBlockAction::create($pos->getWorld()->getBlock($pos)));
+        }
     }
 
     /** @priority MONITOR */

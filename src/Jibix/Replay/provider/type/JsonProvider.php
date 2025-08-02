@@ -97,7 +97,7 @@ class JsonProvider implements Provider{
                 $config->save();
                 file_put_contents(self::getPath($config->getPath()) . "$identifier.bin", $buffer);
             },
-            fn () => $onComplete($information)
+            fn () => $onComplete($information, number_format(strlen($buffer) / (1024 * 1024), 2))
         ));
     }
 

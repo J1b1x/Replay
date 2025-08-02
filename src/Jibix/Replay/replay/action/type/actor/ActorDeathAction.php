@@ -24,7 +24,7 @@ class ActorDeathAction extends EntityAction{
     }
 
     public function handle(Replay $replay): void{
-        $replay->getEntity($this->entityId)->kill();
+        $replay->getEntity($this->entityId)?->kill();
     }
 
     public function handleReversed(Replay $replay): ?Action{

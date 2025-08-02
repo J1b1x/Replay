@@ -4,6 +4,7 @@ use Jibix\Replay\replay\replayer\util\ReplayGenerator;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\block\BlockUpdateEvent;
+use pocketmine\event\entity\EntityCombustEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityItemPickupEvent;
 use pocketmine\event\inventory\InventoryTransactionEvent;
@@ -49,6 +50,10 @@ class ReplayListener implements Listener{
     }
 
     public function onDrop(PlayerDropItemEvent $event): void{
+        $event->cancel();
+    }
+
+    public function onCombust(EntityCombustEvent $event): void{
         $event->cancel();
     }
 
